@@ -1,0 +1,33 @@
+@import "tailwindcss";
+
+@theme {
+  /* Definimos los colores personalizados */
+  --color-navy-900: #0f172a; /* Azul Marino profundo */
+  --color-navy-800: #1e293b; /* Azul Marino medio */
+  --color-orange-500: #f97316; /* Naranja vibrante */
+  --color-orange-600: #ea580c; /* Naranja oscuro hover */
+  
+  /* Fuentes modernas */
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+
+body {
+  @apply bg-slate-50 text-navy-900 font-sans antialiased;
+}
+
+/* Animación de entrada suave */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px); /* Empieza un poco más abajo */
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0); /* Termina en su lugar */
+  }
+}
+
+/* Clase utilitaria para usar en React */
+.animate-enter {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
