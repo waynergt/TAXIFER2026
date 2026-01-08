@@ -1,85 +1,102 @@
 import { useState } from 'react';
 
-// 1. DEFINIMOS EL TIPO DE DATO (Para solucionar el error de "any")
+// 1. INTERFACE (Con signos ? para evitar errores si falta foto)
 interface EventData {
   day: string;
   time: string;
   title: string;
   location: string;
-  mediaType: string;
-  mediaUrl: string;
+  mediaType?: string; // Opcional
+  mediaUrl?: string;  // Opcional
 }
 
-const events = [
-  { day: '09 Ene', time: '08:00 PM', title: 'Velada de Coronación', location: 'Salón Municipal', mediaType: 'image', mediaUrl: '/public/flyers/velada.jpeg' },
+// 2. DATOS REALES (Corregí las rutas quitando '/public')
+const events: EventData[] = [
+  { day: '09 Ene', time: '08:00 PM', title: 'Velada de Coronación', location: 'Salón Municipal', mediaType: 'image', mediaUrl: '/flyers/velada.jpeg' },
   { day: '10 Ene', time: '08:00 AM', title: 'Misa de Acción de Gracia e Inauguración de la Feria', location: 'Plaza Municipal' },
-  { day: '10 Ene', time: '10:00 AM', title: 'Tradicional Desfile Hípico', location: 'Recorriendo las calles principales', mediaType: 'video', mediaUrl: '/public/videos/desfile.jpeg' },
-  { day: '10 Ene', time: '05:00 PM', title: 'CEF Rodeo', location: 'Plaza de Toros Hermanos Arévalo', mediaType: 'video', mediaUrl: '/public/videos/cef.mp4' },
-  { day: '11 Ene', time: '09:00 AM', title: 'Cuadrangular de Futbol "MASTER ORO"', location: 'Estadio Municipal', mediaType: 'image', mediaUrl: '/public/flyers/master oro.png' },
-  { day: '12 Ene', time: '09:00 AM', title: 'Tradicional COPA 12 DE ENERO', location: 'Estadio Municipal', mediaType: 'image', mediaUrl: '/public/flyers/copa12.png' },
-  { day: '12 Ene', time: '07:00 PM', title: 'Baile Social "CHECHA Y SU INDIA MAYA" (Traje Formal)', location: 'Salón Municipal', mediaType: 'image', mediaUrl: '/public/flyers/baile social.jpeg' },
-  { day: '13 Ene', time: '04:00 PM', title: 'Cuadrangular de Baloncesto (Masculino y Femenino', location: 'Salón Municipal', mediaType: 'image', mediaUrl: '/public/flyers/baloncesto.png' },
-  { day: '14 Ene', time: '05:00 PM', title: 'CEF Rodeo', location: 'Plaza de Toros Hermanos Arévalo', mediaType: 'video', mediaUrl: '/public/videos/cef.mp4' },
+  { day: '10 Ene', time: '10:00 AM', title: 'Tradicional Desfile Hípico', location: 'Recorriendo las calles principales', mediaType: 'video', mediaUrl: '/videos/desfile.mp4' },
+  { day: '10 Ene', time: '05:00 PM', title: 'CEF Rodeo', location: 'Plaza de Toros Hermanos Arévalo', mediaType: 'video', mediaUrl: '/videos/cef.mp4' },
+  { day: '11 Ene', time: '09:00 AM', title: 'Cuadrangular de Futbol "MASTER ORO"', location: 'Estadio Municipal', mediaType: 'image', mediaUrl: '/flyers/master oro.png' },
+  { day: '12 Ene', time: '09:00 AM', title: 'Tradicional COPA 12 DE ENERO', location: 'Estadio Municipal', mediaType: 'image', mediaUrl: '/flyers/copa12.png' },
+  { day: '12 Ene', time: '07:00 PM', title: 'Baile Social "CHECHA Y SU INDIA MAYA" (Traje Formal)', location: 'Salón Municipal', mediaType: 'image', mediaUrl: '/flyers/baile social.jpeg' },
+  { day: '13 Ene', time: '04:00 PM', title: 'Cuadrangular de Baloncesto (Masculino y Femenino)', location: 'Salón Municipal', mediaType: 'image', mediaUrl: '/flyers/baloncesto.png' },
+  { day: '14 Ene', time: '05:00 PM', title: 'CEF Rodeo', location: 'Plaza de Toros Hermanos Arévalo', mediaType: 'video', mediaUrl: '/videos/cef.mp4' },
   { day: '15 Ene', time: '07:00 PM', title: 'Concierto con "Malacates Trebol Shop y La Sonora de Melky Fernández del Salvador"', location: 'Estadio Municipal' },
   { day: '16 Ene', time: '09:00 AM', title: 'Caravana Con La Paticipación del Grupo de Motoristas', location: 'Recorriendo las calles principales' },
   { day: '16 Ene', time: '11:00 AM', title: 'Entrega de Equipo Medico Para Personas Necesitadas', location: 'Estadio Municipal' },
   { day: '16 Ene', time: '12:00 PM', title: 'Almuerzo Para Personas de la Tercera Edad', location: 'Estadio Municipal' },
   { day: '16 Ene', time: '07:00 PM', title: 'Concierto con "NICHO Y SUS CACHORROS" y "GRUPO LA REPUBLICA DEL SALVADOR"', location: 'Estadio Municipal' },
-  // Agrega más aquí
 ];
 
 export default function Program() {
   const [selectedEvent, setSelectedEvent] = useState<EventData | null>(null);
 
   return (
-    <> 
-    {/* 1. ABRIMOS FRAGMENTO (<>) PARA TENER DOS BLOQUES SEPARADOS */}
-
-      {/* BLOQUE 1: EL CONTENIDO DE LA PÁGINA (Con animación) */}
+    <>
+      {/* --- BLOQUE 1: CONTENIDO DE LA PÁGINA --- */}
       <div className="pt-24 pb-12 px-4 min-h-screen bg-slate-50 animate-enter">
         <div className="max-w-4xl mx-auto">
-          {/* ... Todo tu código del título y la lista de eventos ... */}
-          {/* (No cambies nada aquí adentro, solo asegúrate de cerrar este div antes del modal) */}
-           <div className="text-center mb-16">
-              {/* ... código del título ... */}
-           </div>
-           <div className="space-y-6">
-              {/* ... el map de los eventos ... */}
-              {events.map((evt, idx) => (
-                 // ... tus tarjetas de eventos ...
-                 // (Resumido para no llenar la pantalla, usa tu código actual)
-                 <div key={idx} className="...">
-                    {/* ... contenido tarjeta ... */}
-                    <div className="w-full md:w-auto mt-4 md:mt-0">
-                      {evt.mediaUrl ? (
-                        <button onClick={() => setSelectedEvent(evt)} className="...">
-                          Ver Info
-                        </button>
-                      ) : (
-                        <span className="text-xs text-gray-400 italic px-2">Próximamente</span>
-                      )}
-                    </div>
-                 </div>
-              ))}
-           </div>
+          <div className="text-center mb-16">
+            <h1 className="text-4xl font-black text-slate-900 mb-4">Programa General</h1>
+            <div className="h-1.5 w-24 bg-orange-500 mx-auto rounded-full"></div>
+            <p className="mt-4 text-gray-600">Haz clic en "Ver Info" para ver los detalles.</p>
+          </div>
+
+          <div className="space-y-6">
+            {events.map((evt, idx) => (
+              <div 
+                key={idx} 
+                className="group bg-white rounded-2xl p-6 shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-100 flex flex-col md:flex-row items-start md:items-center gap-6"
+              >
+                <div className="shrink-0 bg-slate-900 text-white p-4 rounded-xl text-center w-full md:w-28">
+                  <p className="text-sm font-medium text-orange-500 uppercase">{evt.day.split(' ')[1]}</p>
+                  <p className="text-3xl font-bold">{evt.day.split(' ')[0]}</p>
+                </div>
+                
+                <div className="grow w-full">
+                  <span className="inline-block px-3 py-1 bg-orange-100 text-orange-600 text-xs font-bold rounded-full mb-2">
+                    {evt.time}
+                  </span>
+                  <h3 className="text-xl font-bold text-slate-900 group-hover:text-orange-600 transition-colors">
+                    {evt.title}
+                  </h3>
+                  <p className="text-gray-500 mt-1 flex items-center gap-2">
+                    📍 {evt.location}
+                  </p>
+                </div>
+                
+                {/* BOTÓN: Solo aparece si hay mediaUrl */}
+                <div className="w-full md:w-auto mt-4 md:mt-0">
+                  {evt.mediaUrl ? (
+                    <button 
+                      onClick={() => setSelectedEvent(evt)}
+                      className="w-full md:w-auto px-4 py-2 text-sm font-medium text-slate-900 border border-slate-200 rounded-lg hover:bg-slate-900 hover:text-white transition-all whitespace-nowrap"
+                    >
+                      Ver Info
+                    </button>
+                  ) : (
+                    <span className="text-xs text-gray-400 italic px-2">
+                      Próximamente
+                    </span>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
-      </div> 
-      {/* AQUÍ CERRAMOS EL DIV PRINCIPAL "animate-enter" */}
+      </div>
 
-
-      {/* BLOQUE 2: EL MODAL (AFUERA DEL DIV ANIMADO) */}
-      {/* Al estar afuera, 'fixed inset-0' funcionará perfecto y cubrirá toda la pantalla sin scroll */}
+      {/* --- BLOQUE 2: MODAL (FUERA DE LA ANIMACIÓN) --- */}
       {selectedEvent && selectedEvent.mediaUrl && (
         <div 
           className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-sm animate-fade-in"
           onClick={() => setSelectedEvent(null)}
-          style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%' }} // Refuerzo para móviles
+          style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%' }}
         >
           <div 
             className="bg-white rounded-2xl overflow-hidden max-w-3xl w-full shadow-2xl relative"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Botón Cerrar */}
             <button 
               onClick={() => setSelectedEvent(null)}
               className="absolute top-4 right-4 bg-black/50 hover:bg-black/70 text-white rounded-full p-2 z-10 transition-colors"
@@ -88,6 +105,7 @@ export default function Program() {
             </button>
 
             <div className="flex flex-col">
+              {/* Contenedor Multimedia */}
               <div className="bg-black flex justify-center items-center min-h-80 max-h-[80vh]">
                 {selectedEvent.mediaType === 'video' ? (
                   <video 
@@ -120,7 +138,6 @@ export default function Program() {
           </div>
         </div>
       )}
-
-    </> // 3. CERRAMOS EL FRAGMENTO
+    </>
   );
 }
