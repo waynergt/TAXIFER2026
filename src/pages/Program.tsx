@@ -3,6 +3,16 @@ const events = [
   { day: '10 Ene', time: '08:00 AM', title: 'Misa de Acción de Gracia e Inauguración de la Feria', location: 'Plaza Municipal' },
   { day: '10 Ene', time: '10:00 AM', title: 'Tradicional Desfile Hípico', location: 'Recorriendo las calles principales' },
   { day: '10 Ene', time: '05:00 PM', title: 'CEF Rodeo', location: 'Plaza de Toros Hermanos Arévalo' },
+  { day: '11 Ene', time: '09:00 AM', title: 'Cuadrangular de Futbol "MASTER ORO"', location: 'Estadio Municipal' },
+  { day: '12 Ene', time: '09:00 AM', title: 'Tradicional COPA 12 DE ENERO', location: 'Estadio Municipal' },
+  { day: '12 Ene', time: '07:00 PM', title: 'Baile Social "CHECHA Y SU INDIA MAYA" (Traje Formal)', location: 'Salón Municipal' },
+  { day: '13 Ene', time: '04:00 PM', title: 'Cuadrangular de Baloncesto (Masculino y Femenino', location: 'Salón Municipal' },
+  { day: '14 Ene', time: '05:00 PM', title: 'CEF Rodeo', location: 'Plaza de Toros Hermanos Arévalo' },
+  { day: '15 Ene', time: '07:00 PM', title: 'Concierto con "Malacates Trebol Shop y La Sonora de Melky Fernández del Salvador"', location: 'Estadio Municipal' },
+  { day: '16 Ene', time: '09:00 AM', title: 'Caravana Con La Paticipación del Grupo de Motoristas', location: 'Recorriendo las calles principales' },
+  { day: '16 Ene', time: '11:00 AM', title: 'Entrega de Equipo Medico Para Personas Necesitadas', location: 'Estadio Municipal' },
+  { day: '16 Ene', time: '12:00 PM', title: 'Almuerzo Para Personas de la Tercera Edad', location: 'Estadio Municipal' },
+  { day: '16 Ene', time: '07:00 PM', title: 'Concierto con "NICHO Y SUS CACHORROS" y "GRUPO LA REPUBLICA DEL SALVADOR"', location: 'Estadio Municipal' },
   // Agrega más aquí
 ];
 
