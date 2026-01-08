@@ -32,67 +32,54 @@ export default function Program() {
   const [selectedEvent, setSelectedEvent] = useState<EventData | null>(null);
 
   return (
-    <div className="pt-24 pb-12 px-4 min-h-screen bg-slate-50 animate-enter">
-      <div className="max-w-4xl mx-auto">
-        <div className="text-center mb-16">
-          <h1 className="text-4xl font-black text-slate-900 mb-4">Programa General</h1>
-          <div className="h-1.5 w-24 bg-orange-500 mx-auto rounded-full"></div>
-          <p className="mt-4 text-gray-600">Haz clic en "Ver Info" para ver los detalles.</p>
-        </div>
+    <> 
+    {/* 1. ABRIMOS FRAGMENTO (<>) PARA TENER DOS BLOQUES SEPARADOS */}
 
-        <div className="space-y-6">
-          {events.map((evt, idx) => (
-            <div 
-              key={idx} 
-              className="group bg-white rounded-2xl p-6 shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-100 flex flex-col md:flex-row items-start md:items-center gap-6"
-            >
-              <div className="shrink-0 bg-slate-900 text-white p-4 rounded-xl text-center w-full md:w-28">
-                <p className="text-sm font-medium text-orange-500 uppercase">{evt.day.split(' ')[1]}</p>
-                <p className="text-3xl font-bold">{evt.day.split(' ')[0]}</p>
-              </div>
-              
-              <div className="grow w-full">
-                <span className="inline-block px-3 py-1 bg-orange-100 text-orange-600 text-xs font-bold rounded-full mb-2">
-                  {evt.time}
-                </span>
-                <h3 className="text-xl font-bold text-slate-900 group-hover:text-orange-600 transition-colors">
-                  {evt.title}
-                </h3>
-                <p className="text-gray-500 mt-1 flex items-center gap-2">
-                  📍 {evt.location}
-                </p>
-              </div>
-              
-              {/* LÓGICA DEL BOTÓN: Solo aparece si el evento tiene mediaUrl */}
-              <div className="w-full md:w-auto mt-4 md:mt-0">
-                {evt.mediaUrl ? (
-                  <button 
-                    onClick={() => setSelectedEvent(evt)}
-                    className="w-full md:w-auto px-4 py-2 text-sm font-medium text-slate-900 border border-slate-200 rounded-lg hover:bg-slate-900 hover:text-white transition-all whitespace-nowrap"
-                  >
-                    Ver Info
-                  </button>
-                ) : (
-                  <span className="text-xs text-gray-400 italic px-2">
-                    Próximamente
-                  </span>
-                )}
-              </div>
-            </div>
-          ))}
+      {/* BLOQUE 1: EL CONTENIDO DE LA PÁGINA (Con animación) */}
+      <div className="pt-24 pb-12 px-4 min-h-screen bg-slate-50 animate-enter">
+        <div className="max-w-4xl mx-auto">
+          {/* ... Todo tu código del título y la lista de eventos ... */}
+          {/* (No cambies nada aquí adentro, solo asegúrate de cerrar este div antes del modal) */}
+           <div className="text-center mb-16">
+              {/* ... código del título ... */}
+           </div>
+           <div className="space-y-6">
+              {/* ... el map de los eventos ... */}
+              {events.map((evt, idx) => (
+                 // ... tus tarjetas de eventos ...
+                 // (Resumido para no llenar la pantalla, usa tu código actual)
+                 <div key={idx} className="...">
+                    {/* ... contenido tarjeta ... */}
+                    <div className="w-full md:w-auto mt-4 md:mt-0">
+                      {evt.mediaUrl ? (
+                        <button onClick={() => setSelectedEvent(evt)} className="...">
+                          Ver Info
+                        </button>
+                      ) : (
+                        <span className="text-xs text-gray-400 italic px-2">Próximamente</span>
+                      )}
+                    </div>
+                 </div>
+              ))}
+           </div>
         </div>
-      </div>
+      </div> 
+      {/* AQUÍ CERRAMOS EL DIV PRINCIPAL "animate-enter" */}
 
-      {/* --- MODAL (VENTANA EMERGENTE) --- */}
+
+      {/* BLOQUE 2: EL MODAL (AFUERA DEL DIV ANIMADO) */}
+      {/* Al estar afuera, 'fixed inset-0' funcionará perfecto y cubrirá toda la pantalla sin scroll */}
       {selectedEvent && selectedEvent.mediaUrl && (
         <div 
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-fade-in"
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-sm animate-fade-in"
           onClick={() => setSelectedEvent(null)}
+          style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%' }} // Refuerzo para móviles
         >
           <div 
             className="bg-white rounded-2xl overflow-hidden max-w-3xl w-full shadow-2xl relative"
             onClick={(e) => e.stopPropagation()}
           >
+            {/* Botón Cerrar */}
             <button 
               onClick={() => setSelectedEvent(null)}
               className="absolute top-4 right-4 bg-black/50 hover:bg-black/70 text-white rounded-full p-2 z-10 transition-colors"
@@ -101,9 +88,7 @@ export default function Program() {
             </button>
 
             <div className="flex flex-col">
-              {/* Corregido: min-h-80 para evitar warning de Tailwind */}
               <div className="bg-black flex justify-center items-center min-h-80 max-h-[80vh]">
-                
                 {selectedEvent.mediaType === 'video' ? (
                   <video 
                     src={selectedEvent.mediaUrl} 
@@ -120,7 +105,6 @@ export default function Program() {
                     className="max-h-[70vh] w-full object-contain"
                   />
                 )}
-                
               </div>
               
               <div className="p-6 bg-white">
@@ -136,6 +120,7 @@ export default function Program() {
           </div>
         </div>
       )}
-    </div>
+
+    </> // 3. CERRAMOS EL FRAGMENTO
   );
 }
