@@ -7,6 +7,7 @@ import Gallery from './pages/Gallery';
 import Footer from './components/Footer'; 
 import ScrollToTop from './components/ScrollToTop';
 import BackToTopBtn from './components/BackToTopBtn';
+import Magazine from './pages/Magazine';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/programa" element={<Program />} />
           <Route path="/galeria" element={<Gallery />} />
+          <Route path="/revista" element={<Magazine />} />
         </Routes>
       </main>
       

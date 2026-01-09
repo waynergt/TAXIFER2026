@@ -6,18 +6,22 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
 
+  // AQUÍ AGREGAMOS "REVISTA": El código recorrerá esta lista y creará los botones solos
   const links = [
     { name: 'Inicio', path: '/' },
     { name: 'Programa', path: '/programa' },
     { name: 'Galería', path: '/galeria' },
+    { name: 'Revista', path: '/revista' }, // <--- ¡Aquí está integrado!
   ];
 
   const isActive = (path: string) => location.pathname === path;
 
   return (
-    <nav className="fixed w-full z-50 bg-navy-900/95 backdrop-blur-md text-white shadow-lg">
+    // Usamos bg-slate-900 para asegurar el color oscuro estándar
+    <nav className="fixed w-full z-50 bg-slate-900/95 backdrop-blur-md text-white shadow-lg">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 animate-enter">
         <div className="flex items-center justify-between h-20">
+          
           {/* LOGO TAXIFER */}
           <div className="shrink-0 flex items-center gap-3">
              <img src="/logo-taxifer.png" alt="Logo Taxifer2026" className="h-10" />
@@ -28,9 +32,10 @@ export default function Navbar() {
              </span>
           </div>
 
-          {/* Menú Desktop */}
+          {/* Menú Desktop (Computadora) */}
           <div className="hidden md:block">
             <div className="ml-10 flex items-baseline space-x-8">
+              {/* Este código recorre la lista 'links' y crea los botones por ti */}
               {links.map((link) => (
                 <Link
                   key={link.name}
@@ -38,7 +43,7 @@ export default function Navbar() {
                   className={`px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300 ${
                     isActive(link.path)
                       ? 'text-orange-500'
-                      : 'text-gray-300 hover:text-white hover:bg-navy-800'
+                      : 'text-gray-300 hover:text-white hover:bg-slate-800'
                   }`}
                 >
                   {link.name}
@@ -47,11 +52,11 @@ export default function Navbar() {
             </div>
           </div>
 
-          {/* Botón Móvil */}
+          {/* Botón Móvil (Hamburguesa) */}
           <div className="-mr-2 flex md:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-navy-800 focus:outline-none"
+              className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-slate-800 focus:outline-none"
             >
               {isOpen ? <X size={28} /> : <Menu size={28} />}
             </button>
@@ -59,9 +64,9 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Menú Móvil */}
+      {/* Menú Móvil (Desplegable) */}
       {isOpen && (
-        <div className="md:hidden bg-navy-800">
+        <div className="md:hidden bg-slate-800">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             {links.map((link) => (
               <Link
@@ -69,7 +74,7 @@ export default function Navbar() {
                 to={link.path}
                 onClick={() => setIsOpen(false)}
                 className={`block px-3 py-4 rounded-md text-base font-medium ${
-                    isActive(link.path) ? 'text-orange-500 bg-navy-900' : 'text-gray-300 hover:text-white'
+                  isActive(link.path) ? 'text-orange-500 bg-slate-900' : 'text-gray-300 hover:text-white'
                 }`}
               >
                 {link.name}

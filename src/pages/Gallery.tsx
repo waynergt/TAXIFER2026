@@ -1,40 +1,3 @@
-import { Construction, Camera } from 'lucide-react';
-
-export default function Gallery() {
-  return (
-    <div className="min-h-screen bg-slate-50 pt-32 pb-12 px-4 flex flex-col items-center justify-center animate-enter text-center">
-      
-      {/* Círculo decorativo */}
-      <div className="bg-orange-100 p-6 rounded-full mb-6 animate-pulse">
-        <Construction className="w-16 h-16 text-orange-500" />
-      </div>
-
-      <h1 className="text-4xl md:text-5xl font-black text-slate-900 mb-4 tracking-tight">
-        Galería en <span className="text-orange-500">Construcción</span>
-      </h1>
-
-      <p className="text-gray-500 text-lg max-w-lg mx-auto mb-8">
-        Estamos recopilando las mejores fotografías y videos de la feria. 
-        Pronto podrás revivir todos los momentos inolvidables aquí.
-      </p>
-
-      <div className="inline-flex items-center gap-2 px-6 py-3 bg-white border border-slate-200 rounded-full text-slate-600 shadow-sm">
-        <Camera size={20} className="text-orange-500" />
-        <span className="font-medium">Vuelve pronto para ver las fotos</span>
-      </div>
-
-    </div>
-  );
-}
-
-/* =================================================================================
-   CÓDIGO ORIGINAL (DESCOMENTAR CUANDO TENGAS LAS FOTOS LISTAS)
-   
-   Instrucciones:
-   1. Borra todo el código de arriba (desde 'export default function Gallery' hasta aquí).
-   2. Quita los símbolos de comentario al inicio y al final de este bloque.
-   =================================================================================
-
 import { useState } from 'react';
 import { Camera, X, ZoomIn } from 'lucide-react';
 
@@ -124,4 +87,3 @@ export default function Gallery() {
     </div>
   );
 }
-*/

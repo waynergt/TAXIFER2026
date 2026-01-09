@@ -16,8 +16,8 @@ const TimeBox = ({ value, label }: { value: number; label: string }) => (
 // -------------------------------------------------------------------
 
 const Countdown = () => {
-  // FECHA OBJETIVO: 12 de Enero de 2026 a las 09:00 AM
-  const targetDate = new Date('2026-01-09T08:00:00').getTime();
+  // CORRECCIÓN: Usamos formato 24 horas (20:00:00) en lugar de "PM"
+const targetDate = new Date('2026-01-09T20:00:00').getTime();
 
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
