@@ -49,10 +49,10 @@ const events: EventData[] = [
     mediaUrl: 'https://www.youtube.com/shorts/PK664erVmjg' 
   },
 
-  { day: '16 Ene', time: '09:00 AM', title: 'Caravana Con La Paticipación del Grupo de Motoristas', location: 'Recorriendo las calles principales' },
-  { day: '16 Ene', time: '11:00 AM', title: 'Entrega de Equipo Medico Para Personas Necesitadas', location: 'Estadio Municipal' },
-  { day: '16 Ene', time: '12:00 PM', title: 'Almuerzo Para Personas de la Tercera Edad', location: 'Estadio Municipal' },
-  { day: '16 Ene', time: '07:00 PM', title: 'Concierto con "NICHO Y SUS CACHORROS" y "GRUPO LA REPUBLICA DEL SALVADOR"', location: 'Estadio Municipal' },
+  { day: '16 Ene', time: '09:00 AM', title: 'Caravana Con La Paticipación del Grupo de Motoristas', location: 'Recorriendo las calles principales', mediaType: 'video', mediaUrl: 'https://youtu.be/JeEoFVtSZIM?si=bAdxKpf2izk7bIVa' },
+  { day: '16 Ene', time: '11:00 AM', title: 'Entrega de Equipo Medico Para Personas Necesitadas', location: 'Estadio Municipal', mediaType: 'video', mediaUrl: 'https://youtu.be/JeEoFVtSZIM?si=bAdxKpf2izk7bIVa' },
+  { day: '16 Ene', time: '12:00 PM', title: 'Almuerzo Para Personas de la Tercera Edad', location: 'Estadio Municipal', mediaType: 'video', mediaUrl: 'https://youtu.be/JeEoFVtSZIM?si=bAdxKpf2izk7bIVa' },
+  { day: '16 Ene', time: '07:00 PM', title: 'Concierto con "NICHO Y SUS CACHORROS" y "GRUPO LA REPUBLICA DEL SALVADOR"', location: 'Estadio Municipal', mediaType: 'video', mediaUrl: 'https://youtu.be/JeEoFVtSZIM?si=bAdxKpf2izk7bIVa' },
 ];
 
 export default function Program() {
