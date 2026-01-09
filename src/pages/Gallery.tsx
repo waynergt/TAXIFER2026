@@ -69,7 +69,7 @@ const galleryData: Category[] = [
       { id: 39, src: '/blanco/Glendy/001.jpg', name: 'Glendy Nineth Montepeque Barillas', role: 'Señorita Turismo', year: '2026-2027' },
       { id: 40, src: '/blanco/Britney/_MG_0435.jpg', name: 'Britney Sheyen Pérez López', role: 'Señorita Taxistecos Ausentes', year: '2026-2027' },
       { id: 41, src: '/blanco/Britney/_MG_0440.jpg', name: 'Britney Sheyen Pérez López', role: 'Señorita Taxistecos Ausentes', year: '2026-2027' },
-      { id: 42, src: '/blanco/Britney/_MG_0585.jpg', name: 'Britney Sheyen Pérez López', role: 'Señorita Taxistecos Ausentes', year: '2026-2027' },¿
+      { id: 42, src: '/blanco/Britney/_MG_0585.jpg', name: 'Britney Sheyen Pérez López', role: 'Señorita Taxistecos Ausentes', year: '2026-2027' },
     ]
   },
   {
