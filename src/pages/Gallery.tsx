@@ -1,8 +1,44 @@
+import { Construction, Camera } from 'lucide-react';
+
+export default function Gallery() {
+  return (
+    <div className="min-h-screen bg-slate-50 pt-32 pb-12 px-4 flex flex-col items-center justify-center animate-enter text-center">
+      
+      {/* Círculo decorativo */}
+      <div className="bg-orange-100 p-6 rounded-full mb-6 animate-pulse">
+        <Construction className="w-16 h-16 text-orange-500" />
+      </div>
+
+      <h1 className="text-4xl md:text-5xl font-black text-slate-900 mb-4 tracking-tight">
+        Galería en <span className="text-orange-500">Construcción</span>
+      </h1>
+
+      <p className="text-gray-500 text-lg max-w-lg mx-auto mb-8">
+        Estamos recopilando las mejores fotografías y videos de la feria. 
+        Pronto podrás revivir todos los momentos inolvidables aquí.
+      </p>
+
+      <div className="inline-flex items-center gap-2 px-6 py-3 bg-white border border-slate-200 rounded-full text-slate-600 shadow-sm">
+        <Camera size={20} className="text-orange-500" />
+        <span className="font-medium">Vuelve pronto para ver las fotos</span>
+      </div>
+
+    </div>
+  );
+}
+
+/* =================================================================================
+   CÓDIGO ORIGINAL (DESCOMENTAR CUANDO TENGAS LAS FOTOS LISTAS)
+   
+   Instrucciones:
+   1. Borra todo el código de arriba (desde 'export default function Gallery' hasta aquí).
+   2. Quita los símbolos de comentario al inicio y al final de este bloque.
+   =================================================================================
+
 import { useState } from 'react';
 import { Camera, X, ZoomIn } from 'lucide-react';
 
 // Datos de ejemplo (Reemplazarás los 'src' con tus fotos reales de /public)
-// El 'aspect' simula fotos verticales u horizontales
 const galleryImages = [
   { id: 1, src: 'https://images.unsplash.com/photo-1533174072545-e8d4aa97edf9?q=80&w=600&auto=format&fit=crop', category: 'Desfile', title: 'Alegoría Tradicional' },
   { id: 2, src: 'https://images.unsplash.com/photo-1514525253440-b393452e8d26?q=80&w=600&auto=format&fit=crop', category: 'Conciertos', title: 'Noche de Música' },
@@ -19,22 +55,20 @@ export default function Gallery() {
 
   return (
     <div className="min-h-screen bg-slate-50 pt-24 pb-12 px-4 animate-enter">
-      {/* Encabezado */}
       <div className="max-w-7xl mx-auto text-center mb-12">
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-orange-100 text-orange-600 font-semibold text-sm mb-4">
           <Camera size={16} />
           <span>Momentos Inolvidables</span>
         </div>
-        <h1 className="text-4xl md:text-5xl font-black text-navy-900 mb-6">
+        <h1 className="text-4xl md:text-5xl font-black text-slate-900 mb-6">
           Galería Oficial
         </h1>
         <p className="text-gray-500 max-w-2xl mx-auto text-lg">
-          Revive los mejores momentos de <span className="font-bold text-navy-900">Taxifer 2026</span>. 
+          Revive los mejores momentos de <span className="font-bold text-slate-900">Taxifer 2026</span>. 
           Una colección de alegría, color y tradición.
         </p>
       </div>
 
-      {/* Grid Masonry (Pinterest Style) */}
       <div className="max-w-7xl mx-auto columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-4 space-y-4">
         {galleryImages.map((image) => (
           <div 
@@ -42,7 +76,6 @@ export default function Gallery() {
             className="break-inside-avoid relative group rounded-2xl overflow-hidden cursor-pointer shadow-md hover:shadow-xl transition-all duration-500"
             onClick={() => setSelectedImage(image)}
           >
-            {/* Imagen */}
             <img 
               src={image.src} 
               alt={image.title} 
@@ -50,8 +83,7 @@ export default function Gallery() {
               loading="lazy"
             />
             
-            {/* Overlay al pasar el mouse */}
-            <div className="absolute inset-0 bg-navy-900/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center text-white p-4 text-center">
+            <div className="absolute inset-0 bg-slate-900/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center text-white p-4 text-center">
               <ZoomIn className="mb-2 text-orange-500" size={32} />
               <h3 className="font-bold text-lg">{image.title}</h3>
               <p className=" text-gray-300 uppercase tracking-wider text-xs mt-1">{image.category}</p>
@@ -60,29 +92,27 @@ export default function Gallery() {
         ))}
       </div>
 
-      {/* Modal / Lightbox (Pantalla completa al hacer clic) */}
       {selectedImage && (
         <div 
-          className="fixed inset-0 z-60 bg-navy-900/95 backdrop-blur-sm flex items-center justify-center p-4"
+          className="fixed inset-0 z-50 bg-slate-900/95 backdrop-blur-sm flex items-center justify-center p-4"
           onClick={() => setSelectedImage(null)}
+          style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%' }}
         >
-          {/* Botón Cerrar */}
           <button 
-            className="absolute top-6 right-6 text-white/70 hover:text-orange-500 transition-colors"
+            className="absolute top-6 right-6 text-white/70 hover:text-orange-500 transition-colors z-50"
             onClick={() => setSelectedImage(null)}
           >
             <X size={40} />
           </button>
 
-          {/* Imagen Grande */}
           <div 
             className="relative max-w-5xl w-full max-h-[90vh] flex flex-col items-center"
-            onClick={(e) => e.stopPropagation()} // Evita cerrar si clickeas la foto
+            onClick={(e) => e.stopPropagation()} 
           >
             <img 
               src={selectedImage.src} 
               alt={selectedImage.title} 
-              className="rounded-lg shadow-2xl max-h-[85vh] object-contain border-2 border-navy-800"
+              className="rounded-lg shadow-2xl max-h-[85vh] object-contain border-2 border-slate-800"
             />
             <div className="mt-4 text-center">
               <h3 className="text-2xl font-bold text-white">{selectedImage.title}</h3>
@@ -94,3 +124,4 @@ export default function Gallery() {
     </div>
   );
 }
+*/
