@@ -4,29 +4,37 @@ import { Eye } from 'lucide-react';
 export default function VisitCounter() {
   const [visits, setVisits] = useState<number | null>(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
-    // Usamos countapi.xyz que es un servicio gratuito para contar hits
-    // El namespace 'taxifer2026' y key 'visits' aseguran que sea único para tu web
-    fetch('https://api.countapi.xyz/hit/taxifer2026/visits')
-      .then((response) => response.json())
+    // CAMBIO: Usamos counterapi.dev que es más estable
+    // La estructura es: /v1/{tu-namespace}/{tu-key}/up
+    fetch('https://api.counterapi.dev/v1/taxifer2026/visits/up')
+      .then((response) => {
+        if (!response.ok) throw new Error("Error en la API");
+        return response.json();
+      })
       .then((data) => {
-        setVisits(data.value);
+        // Nota: Esta API devuelve 'count', la anterior devolvía 'value'
+        setVisits(data.count);
         setLoading(false);
       })
       .catch((error) => {
-        console.error("Error al obtener visitas:", error);
+        console.error("No se pudo cargar el contador:", error);
+        setError(true);
         setLoading(false);
       });
   }, []);
 
-  if (loading) return null; // No muestra nada mientras carga para no verse feo
+  // Si carga o da error, mostramos un número base o nada para que no se vea feo
+  if (loading) return null;
+  if (error) return null; 
 
   return (
-    <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/80 backdrop-blur-sm border border-slate-200 rounded-full shadow-sm text-slate-600 text-sm font-medium animate-fade-in mt-6">
-      <Eye size={16} className="text-orange-500" />
+    <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-full shadow-lg text-white text-sm font-medium animate-fade-in mt-6 hover:bg-white/20 transition-colors cursor-default">
+      <Eye size={16} className="text-orange-400" />
       <span>
-        {visits ? visits.toLocaleString() : '0'} Visitas
+        {visits ? visits.toLocaleString() : '1'} Visitas
       </span>
     </div>
   );
