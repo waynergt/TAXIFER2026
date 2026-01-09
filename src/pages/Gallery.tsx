@@ -55,7 +55,21 @@ const galleryData: Category[] = [
     title: "Traje Blanco",
     description: "Pureza y glamour en una noche inolvidable.",
     photos: [
-      { id: 101, src: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=600&auto=format&fit=crop', name: 'Carla López', role: 'Señorita Flor de la Feria', year: '2025' },
+      { id: 28, src: '/blanco/Beberly/008.jpg', name: 'Beberlyn Mishell Avila Villagran', role: 'Señorita Flor de la Feria', year: '2026-2027' },
+      { id: 29, src: '/blanco/Roci/_MG_0433.jpg', name: 'Estefany Rocio Ventura Morales', role: 'Señorita Simpatía', year: '2026-2027' },
+      { id: 30, src: '/blanco/Roci/_MG_0455.jpg', name: 'Estefany Rocio Ventura Morales', role: 'Señorita Simpatía', year: '2026-2027' },
+      { id: 31, src: '/blanco/Roci/_MG_0481.jpg', name: 'Estefany Rocio Ventura Morales', role: 'Señorita Simpatía', year: '2026-2027' },
+      { id: 32, src: '/blanco/Roci/_MG_0512.jpg', name: 'Estefany Rocio Ventura Morales', role: 'Señorita Simpatía', year: '2026-2027' },
+      { id: 33, src: '/blanco/Roci/_MG_0582.jpg', name: 'Estefany Rocio Ventura Morales', role: 'Señorita Simpatía', year: '2026-2027' },
+      { id: 34, src: '/blanco/Judith/_MG_0454.jpg', name: 'Judit Samanta Pineda Contreras', role: 'Señorita Novia del Ganadero', year: '2026-2027' },
+      { id: 35, src: '/blanco/Judith/_MG_0490.jpg', name: 'Judit Samanta Pineda Contreras', role: 'Señorita Novia del Ganadero', year: '2026-2027' },
+      { id: 36, src: '/blanco/Judith/_MG_0491.jpg', name: 'Judit Samanta Pineda Contreras', role: 'Señorita Novia del Ganadero', year: '2026-2027' },
+      { id: 37, src: '/blanco/Judith/009.jpg', name: 'Judit Samanta Pineda Contreras', role: 'Señorita Novia del Ganadero', year: '2026-2027' },
+      { id: 38, src: '/blanco/Mackensí/010.jpg', name: 'Brianna Mackensí Nicole Vásquez', role: 'Señorita Deportes', year: '2026-2027' },
+      { id: 39, src: '/blanco/Glendy/001.jpg', name: 'Glendy Nineth Montepeque Barillas', role: 'Señorita Turismo', year: '2026-2027' },
+      { id: 40, src: '/blanco/Britney/_MG_0435.jpg', name: 'Britney Sheyen Pérez López', role: 'Señorita Taxistecos Ausentes', year: '2026-2027' },
+      { id: 41, src: '/blanco/Britney/_MG_0440.jpg', name: 'Britney Sheyen Pérez López', role: 'Señorita Taxistecos Ausentes', year: '2026-2027' },
+      { id: 42, src: '/blanco/Britney/_MG_0585.jpg', name: 'Britney Sheyen Pérez López', role: 'Señorita Taxistecos Ausentes', year: '2026-2027' },¿
     ]
   },
   {
