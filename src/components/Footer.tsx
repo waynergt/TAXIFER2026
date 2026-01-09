@@ -23,9 +23,6 @@ const Footer = () => {
                 <span>📍</span> Palacio Municipal, Taxisco, Santa Rosa
               </li>
               <li className="flex items-center gap-2">
-                <span>📞</span> (502) 
-              </li>
-              <li className="flex items-center gap-2">
                 <span>📧</span> recepcionmunicipal2024@munitaxisco.gob.gt
               </li>
             </ul>
