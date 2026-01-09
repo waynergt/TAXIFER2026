@@ -3,11 +3,13 @@ import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import Program from './pages/Program';
 import Gallery from './pages/Gallery';
-// 1. IMPORTAMOS EL NUEVO COMPONENTE FOOTER
 import Footer from './components/Footer'; 
 import ScrollToTop from './components/ScrollToTop';
 import BackToTopBtn from './components/BackToTopBtn';
 import Magazine from './pages/Magazine';
+
+// NOTA: Borramos la importación de VisitCounter de aquí porque ya lo estás usando en Home.tsx
+// y así evitamos el error de "definido pero nunca usado".
 
 function App() {
   return (
@@ -24,7 +26,6 @@ function App() {
         </Routes>
       </main>
       
-      {/* 2. AQUÍ COLOCAMOS EL COMPONENTE (Reemplazando el código viejo) */}
       <Footer />
       <BackToTopBtn />
       
