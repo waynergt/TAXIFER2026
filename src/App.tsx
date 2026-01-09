@@ -5,10 +5,13 @@ import Program from './pages/Program';
 import Gallery from './pages/Gallery';
 // 1. IMPORTAMOS EL NUEVO COMPONENTE FOOTER
 import Footer from './components/Footer'; 
+import ScrollToTop from './components/ScrollToTop';
+import BackToTopBtn from './components/BackToTopBtn';
 
 function App() {
   return (
     <div className="min-h-screen flex flex-col">
+      <ScrollToTop />
       <Navbar />
       
       <main className="grow">
@@ -21,6 +24,7 @@ function App() {
       
       {/* 2. AQUÍ COLOCAMOS EL COMPONENTE (Reemplazando el código viejo) */}
       <Footer />
+      <BackToTopBtn />
       
     </div>
   );

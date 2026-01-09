@@ -37,8 +37,8 @@ export default function Program() {
       <div className="pt-24 pb-12 px-4 min-h-screen bg-slate-50 animate-enter">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-16">
-            <h1 className="text-4xl font-black text-slate-900 mb-4">Programa General</h1>
-            <div className="h-1.5 w-24 bg-orange-500 mx-auto rounded-full"></div>
+            <h1 className="text-4xl font-black text-slate-900 mb-4">Programa General de Actividades</h1>
+            <div className="h-0.5 w-36 bg-orange-500 mx-auto rounded-full"></div>
             <p className="mt-4 text-gray-600">Haz clic en "Ver Info" para ver los detalles.</p>
           </div>
 
@@ -76,7 +76,7 @@ export default function Program() {
                     </button>
                   ) : (
                     <span className="text-xs text-gray-400 italic px-2">
-                      Próximamente
+                      
                     </span>
                   )}
                 </div>
