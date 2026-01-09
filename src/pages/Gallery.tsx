@@ -1,89 +1,240 @@
-import { useState } from 'react';
-import { Camera, X, ZoomIn } from 'lucide-react';
+import { useState, useEffect, useCallback } from 'react';
+import { Camera, X, ZoomIn, User, Calendar, Award, ChevronLeft, ChevronRight } from 'lucide-react';
 
-// Datos de ejemplo (Reemplazarás los 'src' con tus fotos reales de /public)
-const galleryImages = [
-  { id: 1, src: 'https://images.unsplash.com/photo-1533174072545-e8d4aa97edf9?q=80&w=600&auto=format&fit=crop', category: 'Desfile', title: 'Alegoría Tradicional' },
-  { id: 2, src: 'https://images.unsplash.com/photo-1514525253440-b393452e8d26?q=80&w=600&auto=format&fit=crop', category: 'Conciertos', title: 'Noche de Música' },
-  { id: 3, src: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=600&auto=format&fit=crop', category: 'Feria', title: 'Juegos Mecánicos' },
-  { id: 4, src: 'https://images.unsplash.com/photo-1540039155733-5bb30b53aa14?q=80&w=600&auto=format&fit=crop', category: 'Cultura', title: 'Danzas Folclóricas' },
-  { id: 5, src: 'https://images.unsplash.com/photo-1561484930-998b6a7b22e8?q=80&w=600&auto=format&fit=crop', category: 'Desfile', title: 'Carrozas Reales' },
-  { id: 6, src: 'https://images.unsplash.com/photo-1530103862676-de3c9da59af7?q=80&w=600&auto=format&fit=crop', category: 'Conciertos', title: 'Escenario Principal' },
-  { id: 7, src: 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?q=80&w=600&auto=format&fit=crop', category: 'Feria', title: 'Noche de Luces' },
-  { id: 8, src: 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&w=600&auto=format&fit=crop', category: 'Cultura', title: 'Gastronomía Local' },
+// --- DEFINICIÓN DE TIPOS ---
+interface Photo {
+  id: number;
+  src: string;
+  name: string;
+  role: string;
+  year: string;
+}
+
+interface Category {
+  title: string;
+  description: string;
+  photos: Photo[];
+}
+
+// --- TUS DATOS (INTACTOS) ---
+const galleryData: Category[] = [
+  {
+    title: "Traje de Baño",
+    description: "Elegancia y confianza en la pasarela de verano.",
+    photos: [
+      { id: 1, src: '/banio/Beberly/003.jpg', name: 'Beberlyn Mishell Avila Villagran', role: 'Señorita Flor de la Feria', year: '2026-2027' },
+      { id: 2, src: '/banio/Beberly/IMG_8449.jpg', name: 'Beberlyn Mishell Avila Villagran', role: 'Señorita Flor de la Feria', year: '2026-2027' },
+      { id: 3, src: '/banio/Beberly/IMG_8453.jpg', name: 'Beberlyn Mishell Avila Villagran', role: 'Señorita Flor de la Feria', year: '2026-2027' },
+      { id: 4, src: '/banio/Beberly/IMG_8461.jpg', name: 'Beberlyn Mishell Avila Villagran', role: 'Señorita Flor de la Feria', year: '2026-2027' },
+      { id: 5, src: '/banio/Beberly/IMG_8465.jpg', name: 'Beberlyn Mishell Avila Villagran', role: 'Señorita Flor de la Feria', year: '2026-2027' },
+      { id: 6, src: '/banio/Roci/004.jpg', name: 'Estefany Rocio Ventura Morales', role: 'Señorita Simpatía', year: '2026-2027' },
+      { id: 7, src: '/banio/Roci/IMG_8414.jpg', name: 'Estefany Rocio Ventura Morales', role: 'Señorita Simpatía', year: '2026-2027' },
+      { id: 8, src: '/banio/Roci/IMG_8426.jpg', name: 'Estefany Rocio Ventura Morales', role: 'Señorita Simpatía', year: '2026-2027' },
+      { id: 9, src: '/banio/Roci/IMG_8433.jpg', name: 'Estefany Rocio Ventura Morales', role: 'Señorita Simpatía', year: '2026-2027' },
+      { id: 10, src: '/banio/Roci/IMG_8443.jpg', name: 'Estefany Rocio Ventura Morales', role: 'Señorita Simpatía', year: '2026-2027' },
+      { id: 11, src: '/banio/Roci/IMG_8444.jpg', name: 'Estefany Rocio Ventura Morales', role: 'Señorita Simpatía', year: '2026-2027' },
+      { id: 12, src: '/banio/Roci/N003.jpg', name: 'Estefany Rocio Ventura Morales', role: 'Señorita Simpatía', year: '2026-2027' },
+      { id: 13, src: '/banio/Judith/_MG_0414.jpg', name: 'Judit Samanta Pineda Contreras', role: 'Señorita Novia del Ganadero', year: '2026-2027' },
+      { id: 14, src: '/banio/Judith/002.jpg', name: 'Judit Samanta Pineda Contreras', role: 'Señorita Novia del Ganadero', year: '2026-2027' },
+      { id: 15, src: '/banio/Judith/IMG_8475.jpg', name: 'Judit Samanta Pineda Contreras', role: 'Señorita Novia del Ganadero', year: '2026-2027' },
+      { id: 16, src: '/banio/Judith/IMG_8479.jpg', name: 'Judit Samanta Pineda Contreras', role: 'Señorita Novia del Ganadero', year: '2026-2027' },
+      { id: 17, src: '/banio/Judith/IMG_8490.jpg', name: 'Judit Samanta Pineda Contreras', role: 'Señorita Novia del Ganadero', year: '2026-2027' },
+      { id: 18, src: '/banio/Judith/N005.jpg', name: 'Judit Samanta Pineda Contreras', role: 'Señorita Novia del Ganadero', year: '2026-2027' },
+      { id: 19, src: '/banio/Mackensí/005.jpg', name: 'Brianna Mackensí Nicole Vásquez', role: 'Señorita Deportes', year: '2026-2027' },
+      { id: 20, src: '/banio/Mackensí/N001.jpg', name: 'Brianna Mackensí Nicole Vásquez', role: 'Señorita Deportes', year: '2026-2027' },
+      { id: 21, src: '/banio/Glendy/N002.jpg', name: 'Glendy Nineth Montepeque Barillas', role: 'Señorita Turismo', year: '2026-2027' },
+      { id: 22, src: '/banio/Glendy/001.jpg', name: 'Glendy Nineth Montepeque Barillas', role: 'Señorita Turismo', year: '2026-2027' },
+      { id: 23, src: '/banio/Britney/006.jpg', name: 'Britney Sheyen Pérez López', role: 'Señorita Taxistecos Ausentes', year: '2026-2027' },
+      { id: 24, src: '/banio/Britney/IMG_8508.jpg', name: 'Britney Sheyen Pérez López', role: 'Señorita Taxistecos Ausentes', year: '2026-2027' },
+      { id: 25, src: '/banio/Britney/IMG_8526.jpg', name: 'Britney Sheyen Pérez López', role: 'Señorita Taxistecos Ausentes', year: '2026-2027' },
+      { id: 26, src: '/banio/Britney/IMG_8532.jpg', name: 'Britney Sheyen Pérez López', role: 'Señorita Taxistecos Ausentes', year: '2026-2027' },
+      { id: 27, src: '/banio/Britney/N004.jpg', name: 'Britney Sheyen Pérez López', role: 'Señorita Taxistecos Ausentes', year: '2026-2027' },
+    ]
+  },
+  {
+    title: "Traje Blanco",
+    description: "Pureza y glamour en una noche inolvidable.",
+    photos: [
+      { id: 101, src: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=600&auto=format&fit=crop', name: 'Carla López', role: 'Señorita Flor de la Feria', year: '2025' },
+    ]
+  },
+  {
+    title: "Estilo Vaquero",
+    description: "Tradición y alegría en nuestro desfile hípico.",
+    photos: [
+      { id: 201, src: 'https://images.unsplash.com/photo-1540039155733-5bb30b53aa14?q=80&w=600&auto=format&fit=crop', name: 'Grupo de Danza', role: 'Invitados Especiales', year: '2026' },
+    ]
+  },
+  {
+    title: "Proyectos",
+    description: "Obras y mejoras para nuestra comunidad.",
+    photos: [
+      { id: 301, src: 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&w=600&auto=format&fit=crop', name: 'Remodelación Parque', role: 'Obra Municipal', year: '2025-2026' },
+    ]
+  },
 ];
 
 export default function Gallery() {
-  const [selectedImage, setSelectedImage] = useState<null | typeof galleryImages[0]>(null);
+  const [currentIndexes, setCurrentIndexes] = useState<{ catIdx: number, photoIdx: number } | null>(null);
+
+  const openModal = (catIdx: number, photoIdx: number) => {
+    setCurrentIndexes({ catIdx, photoIdx });
+  };
+
+  const closeModal = useCallback(() => {
+    setCurrentIndexes(null);
+  }, []);
+
+  const nextPhoto = useCallback(() => {
+    if (!currentIndexes) return;
+    const { catIdx, photoIdx } = currentIndexes;
+    const category = galleryData[catIdx];
+    const nextIdx = (photoIdx + 1) % category.photos.length;
+    setCurrentIndexes({ catIdx, photoIdx: nextIdx });
+  }, [currentIndexes]);
+
+  const prevPhoto = useCallback(() => {
+    if (!currentIndexes) return;
+    const { catIdx, photoIdx } = currentIndexes;
+    const category = galleryData[catIdx];
+    const prevIdx = (photoIdx - 1 + category.photos.length) % category.photos.length;
+    setCurrentIndexes({ catIdx, photoIdx: prevIdx });
+  }, [currentIndexes]);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (!currentIndexes) return;
+      if (e.key === 'ArrowRight') nextPhoto();
+      if (e.key === 'ArrowLeft') prevPhoto();
+      if (e.key === 'Escape') closeModal();
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [currentIndexes, nextPhoto, prevPhoto, closeModal]);
+
+  const currentPhoto = currentIndexes 
+    ? galleryData[currentIndexes.catIdx].photos[currentIndexes.photoIdx] 
+    : null;
 
   return (
-    <div className="min-h-screen bg-slate-50 pt-24 pb-12 px-4 animate-enter">
-      <div className="max-w-7xl mx-auto text-center mb-12">
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-orange-100 text-orange-600 font-semibold text-sm mb-4">
-          <Camera size={16} />
-          <span>Momentos Inolvidables</span>
-        </div>
-        <h1 className="text-4xl md:text-5xl font-black text-slate-900 mb-6">
-          Galería Oficial
-        </h1>
-        <p className="text-gray-500 max-w-2xl mx-auto text-lg">
-          Revive los mejores momentos de <span className="font-bold text-slate-900">Taxifer 2026</span>. 
-          Una colección de alegría, color y tradición.
-        </p>
-      </div>
-
-      <div className="max-w-7xl mx-auto columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-4 space-y-4">
-        {galleryImages.map((image) => (
-          <div 
-            key={image.id} 
-            className="break-inside-avoid relative group rounded-2xl overflow-hidden cursor-pointer shadow-md hover:shadow-xl transition-all duration-500"
-            onClick={() => setSelectedImage(image)}
-          >
-            <img 
-              src={image.src} 
-              alt={image.title} 
-              className="w-full h-auto transform group-hover:scale-110 transition-transform duration-700 ease-out"
-              loading="lazy"
-            />
-            
-            <div className="absolute inset-0 bg-slate-900/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center text-white p-4 text-center">
-              <ZoomIn className="mb-2 text-orange-500" size={32} />
-              <h3 className="font-bold text-lg">{image.title}</h3>
-              <p className=" text-gray-300 uppercase tracking-wider text-xs mt-1">{image.category}</p>
-            </div>
+    <> {/* 1. ABRIMOS FRAGMENTO */}
+      
+      {/* BLOQUE DE LA PÁGINA (CON ANIMACIÓN) */}
+      <div className="min-h-screen bg-slate-50 pt-24 pb-12 px-4 animate-enter">
+        {/* Encabezado */}
+        <div className="max-w-7xl mx-auto text-center mb-16">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-orange-100 text-orange-600 font-semibold text-sm mb-4">
+            <Camera size={16} />
+            <span>Momentos Inolvidables</span>
           </div>
-        ))}
-      </div>
+          <h1 className="text-4xl md:text-5xl font-black text-slate-900 mb-6">
+            Galería Oficial
+          </h1>
+          <p className="text-gray-500 max-w-2xl mx-auto text-lg">
+            Revive los mejores momentos de <span className="font-bold text-slate-900">Taxifer 2026</span>. 
+            Una colección de alegría, cultura y desarrollo.
+          </p>
+        </div>
 
-      {selectedImage && (
+        {/* Grid de Categorías */}
+        <div className="max-w-7xl mx-auto space-y-20">
+          {galleryData.map((category, catIdx) => (
+            <section key={catIdx} className="space-y-6">
+              <div className="border-l-4 border-orange-500 pl-4">
+                <h2 className="text-3xl font-bold text-slate-900">{category.title}</h2>
+                <p className="text-gray-500">{category.description}</p>
+              </div>
+
+              <div className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-4 space-y-4">
+                {category.photos.map((image, photoIdx) => (
+                  <div 
+                    key={image.id} 
+                    className="break-inside-avoid relative group rounded-2xl overflow-hidden cursor-pointer shadow-md hover:shadow-xl transition-all duration-500 bg-slate-900"
+                    onClick={() => openModal(catIdx, photoIdx)}
+                  >
+                    <img 
+                      src={image.src} 
+                      alt={image.name} 
+                      className="w-full h-auto transform group-hover:scale-110 group-hover:opacity-75 transition-all duration-700 ease-out"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-4 text-center">
+                      <ZoomIn className="mb-2 text-orange-500 drop-shadow-md" size={32} />
+                      <h3 className="font-bold text-lg text-white drop-shadow-md">{image.name}</h3>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </section>
+          ))}
+        </div>
+      </div> {/* 2. CERRAMOS EL DIV DE LA PÁGINA AQUÍ, ANTES DEL MODAL */}
+
+      {/* --- MODAL (AHORA FUERA DEL CONTENEDOR ANIMADO) --- */}
+      {currentPhoto && (
         <div 
-          className="fixed inset-0 z-50 bg-slate-900/95 backdrop-blur-sm flex items-center justify-center p-4"
-          onClick={() => setSelectedImage(null)}
-          style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%' }}
+          className="fixed inset-0 z-50 bg-black/95 backdrop-blur-md flex items-center justify-center animate-fade-in"
+          onClick={closeModal}
+          style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%' }} // 3. ESTILO FIJO AGREGADO
         >
+          {/* Botón Cerrar */}
           <button 
-            className="absolute top-6 right-6 text-white/70 hover:text-orange-500 transition-colors z-50"
-            onClick={() => setSelectedImage(null)}
+            className="absolute top-4 right-4 text-white/70 hover:text-orange-500 transition-colors z-50 p-2 bg-white/10 rounded-full hover:bg-white/20"
+            onClick={(e) => { e.stopPropagation(); closeModal(); }}
           >
-            <X size={40} />
+            <X size={28} />
           </button>
 
+          {/* Flechas de Navegación */}
+          <button 
+            className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 text-white/70 hover:text-white transition-colors z-50 p-2 bg-black/40 rounded-full hover:bg-orange-500"
+            onClick={(e) => { e.stopPropagation(); prevPhoto(); }}
+          >
+            <ChevronLeft size={32} />
+          </button>
+
+          <button 
+            className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 text-white/70 hover:text-white transition-colors z-50 p-2 bg-black/40 rounded-full hover:bg-orange-500"
+            onClick={(e) => { e.stopPropagation(); nextPhoto(); }}
+          >
+            <ChevronRight size={32} />
+          </button>
+
+          {/* Contenedor Principal Ajustado al 100% de la pantalla sin scroll */}
           <div 
-            className="relative max-w-5xl w-full max-h-[90vh] flex flex-col items-center"
+            className="flex flex-col items-center justify-center w-full h-full p-2 md:p-4"
             onClick={(e) => e.stopPropagation()} 
           >
+            {/* IMAGEN: Máximo 75% de la altura para dejar espacio al texto */}
             <img 
-              src={selectedImage.src} 
-              alt={selectedImage.title} 
-              className="rounded-lg shadow-2xl max-h-[85vh] object-contain border-2 border-slate-800"
+              src={currentPhoto.src} 
+              alt={currentPhoto.name} 
+              className="max-h-[75vh] w-auto max-w-full object-contain rounded-md shadow-2xl"
             />
-            <div className="mt-4 text-center">
-              <h3 className="text-2xl font-bold text-white">{selectedImage.title}</h3>
-              <span className="text-orange-500 font-medium">{selectedImage.category}</span>
+
+            {/* INFORMACIÓN: Pegada justo debajo */}
+            <div className="mt-3 bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-3 md:px-6 md:py-3 text-center w-full max-w-lg shrink-0">
+              <h3 className="text-lg md:text-xl font-bold text-white flex items-center justify-center gap-2">
+                <User className="text-orange-500" size={20} />
+                {currentPhoto.name}
+              </h3>
+              
+              <div className="flex flex-wrap justify-center gap-3 mt-1 text-sm">
+                <span className="flex items-center gap-1 text-gray-300 font-medium">
+                  <Award size={14} className="text-orange-400" />
+                  {currentPhoto.role}
+                </span>
+                <span className="text-gray-500">|</span>
+                <span className="flex items-center gap-1 text-gray-300">
+                  <Calendar size={14} className="text-orange-400" />
+                  {currentPhoto.year}
+                </span>
+              </div>
             </div>
           </div>
         </div>
       )}
-    </div>
+
+    </> // 4. CERRAMOS EL FRAGMENTO
   );
 }
