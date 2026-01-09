@@ -1,27 +1,54 @@
 import { useState } from 'react';
 
-// 1. INTERFACE (Con signos ? para evitar errores si falta foto)
+// 1. INTERFACE
 interface EventData {
   day: string;
   time: string;
   title: string;
   location: string;
-  mediaType?: string; // Opcional
-  mediaUrl?: string;  // Opcional
+  mediaType?: string; 
+  mediaUrl?: string;
 }
 
-// 2. DATOS REALES (Corregí las rutas quitando '/public')
+// 2. DATOS REALES
 const events: EventData[] = [
   { day: '09 Ene', time: '08:00 PM', title: 'Velada de Coronación', location: 'Salón Municipal', mediaType: 'image', mediaUrl: '/flyers/velada.jpeg' },
   { day: '10 Ene', time: '08:00 AM', title: 'Misa de Acción de Gracia e Inauguración de la Feria', location: 'Plaza Municipal' },
-  { day: '10 Ene', time: '10:00 AM', title: 'Tradicional Desfile Hípico', location: 'Recorriendo las calles principales', mediaType: 'video', mediaUrl: '/videos/desfile.mp4' },
-  { day: '10 Ene', time: '05:00 PM', title: 'CEF Rodeo', location: 'Plaza de Toros Hermanos Arévalo', mediaType: 'video', mediaUrl: '/videos/cef.mp4' },
+  
+  // YouTube Normal
+  { 
+    day: '10 Ene', 
+    time: '10:00 AM', 
+    title: 'Tradicional Desfile Hípico', 
+    location: 'Recorriendo las calles principales', 
+    mediaType: 'video', 
+    mediaUrl: 'https://youtu.be/IWtoAr3_lWQ?si=tA8_82_rwj2xsgX3' 
+  },
+  { 
+    day: '10 Ene', 
+    time: '05:00 PM', 
+    title: 'CEF Rodeo', 
+    location: 'Plaza de Toros Hermanos Arévalo', 
+    mediaType: 'video', 
+    mediaUrl: 'https://youtu.be/op4Iom3rJys?si=YzmuRaVJttxkItMb' 
+  },
+
   { day: '11 Ene', time: '09:00 AM', title: 'Cuadrangular de Futbol "MASTER ORO"', location: 'Estadio Municipal', mediaType: 'image', mediaUrl: '/flyers/master oro.png' },
   { day: '12 Ene', time: '09:00 AM', title: 'Tradicional COPA 12 DE ENERO', location: 'Estadio Municipal', mediaType: 'image', mediaUrl: '/flyers/copa12.png' },
   { day: '12 Ene', time: '07:00 PM', title: 'Baile Social "CHECHA Y SU INDIA MAYA" (Traje Formal)', location: 'Salón Municipal', mediaType: 'image', mediaUrl: '/flyers/baile social.jpeg' },
   { day: '13 Ene', time: '04:00 PM', title: 'Cuadrangular de Baloncesto (Masculino y Femenino)', location: 'Salón Municipal', mediaType: 'image', mediaUrl: '/flyers/baloncesto.png' },
-  { day: '14 Ene', time: '05:00 PM', title: 'CEF Rodeo', location: 'Plaza de Toros Hermanos Arévalo', mediaType: 'video', mediaUrl: '/videos/cef.mp4' },
-  { day: '15 Ene', time: '07:00 PM', title: 'Concierto con "Malacates Trebol Shop y La Sonora de Melky Fernández del Salvador"', location: 'Estadio Municipal' },
+  { day: '14 Ene', time: '05:00 PM', title: 'CEF Rodeo', location: 'Plaza de Toros Hermanos Arévalo', mediaType: 'video', mediaUrl: 'https://youtu.be/op4Iom3rJys?si=YzmuRaVJttxkItMb' },
+  
+  // YouTube SHORTS
+  { 
+    day: '15 Ene', 
+    time: '07:00 PM', 
+    title: 'Concierto con "Malacates Trebol Shop y La Sonora de Melky Fernández del Salvador"', 
+    location: 'Estadio Municipal', 
+    mediaType: 'video', 
+    mediaUrl: 'https://www.youtube.com/shorts/PK664erVmjg' 
+  },
+
   { day: '16 Ene', time: '09:00 AM', title: 'Caravana Con La Paticipación del Grupo de Motoristas', location: 'Recorriendo las calles principales' },
   { day: '16 Ene', time: '11:00 AM', title: 'Entrega de Equipo Medico Para Personas Necesitadas', location: 'Estadio Municipal' },
   { day: '16 Ene', time: '12:00 PM', title: 'Almuerzo Para Personas de la Tercera Edad', location: 'Estadio Municipal' },
@@ -31,9 +58,17 @@ const events: EventData[] = [
 export default function Program() {
   const [selectedEvent, setSelectedEvent] = useState<EventData | null>(null);
 
+  // FUNCIÓN: Detecta ID de YouTube (Normal y Shorts)
+  const getYouTubeId = (url: string) => {
+    if (!url) return null;
+    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=|shorts\/)([^#&?]*).*/;
+    const match = url.match(regExp);
+    return (match && match[2]) ? match[2] : null;
+  };
+
   return (
     <>
-      {/* --- BLOQUE 1: CONTENIDO DE LA PÁGINA --- */}
+      {/* --- BLOQUE 1: CONTENIDO --- */}
       <div className="pt-24 pb-12 px-4 min-h-screen bg-slate-50 animate-enter">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-16">
@@ -65,7 +100,6 @@ export default function Program() {
                   </p>
                 </div>
                 
-                {/* BOTÓN: Solo aparece si hay mediaUrl */}
                 <div className="w-full md:w-auto mt-4 md:mt-0">
                   {evt.mediaUrl ? (
                     <button 
@@ -75,9 +109,7 @@ export default function Program() {
                       Ver Info
                     </button>
                   ) : (
-                    <span className="text-xs text-gray-400 italic px-2">
-                      
-                    </span>
+                    <span className="text-xs text-gray-400 italic px-2"></span>
                   )}
                 </div>
               </div>
@@ -86,7 +118,7 @@ export default function Program() {
         </div>
       </div>
 
-      {/* --- BLOQUE 2: MODAL (FUERA DE LA ANIMACIÓN) --- */}
+      {/* --- BLOQUE 2: MODAL --- */}
       {selectedEvent && selectedEvent.mediaUrl && (
         <div 
           className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-sm animate-fade-in"
@@ -106,17 +138,36 @@ export default function Program() {
 
             <div className="flex flex-col">
               {/* Contenedor Multimedia */}
-              <div className="bg-black flex justify-center items-center min-h-80 max-h-[80vh]">
+              <div className="bg-black flex justify-center items-center min-h-80 max-h-[80vh] w-full">
+                
+                {/* LÓGICA: YouTube (Iframe) vs Video Local (Video tag) vs Imagen */}
                 {selectedEvent.mediaType === 'video' ? (
-                  <video 
-                    src={selectedEvent.mediaUrl} 
-                    controls 
-                    autoPlay 
-                    className="max-h-[70vh] w-full object-contain"
-                  >
-                    Tu navegador no soporta videos.
-                  </video>
+                  getYouTubeId(selectedEvent.mediaUrl) ? (
+                    // --- REPRODUCTOR YOUTUBE ---
+                    <iframe
+                      width="100%"
+                      height="100%"
+                      src={`https://www.youtube.com/embed/${getYouTubeId(selectedEvent.mediaUrl)}?autoplay=1&mute=0`}
+                      title="YouTube video player"
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                      // CORREGIDO AQUÍ: min-h-75 en lugar de min-h-[300px]
+                      className="w-full h-full aspect-video min-h-75"
+                    ></iframe>
+                  ) : (
+                    // --- REPRODUCTOR LOCAL ---
+                    <video 
+                      src={selectedEvent.mediaUrl} 
+                      controls 
+                      autoPlay 
+                      className="max-h-[70vh] w-full object-contain"
+                    >
+                      Tu navegador no soporta videos.
+                    </video>
+                  )
                 ) : (
+                  // --- VISOR DE IMAGEN ---
                   <img 
                     src={selectedEvent.mediaUrl} 
                     alt={selectedEvent.title} 

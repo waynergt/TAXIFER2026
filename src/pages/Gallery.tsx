@@ -20,7 +20,7 @@ interface Category {
 const galleryData: Category[] = [
   {
     title: "Traje de Baño",
-    description: "Elegancia y confianza en la pasarela de verano.",
+    description: "Elegancia y confianza de Nuestras Representantes.",
     photos: [
       { id: 1, src: '/banio/Beberly/003.jpg', name: 'Beberlyn Mishell Avila Villagran', role: 'Señorita Flor de la Feria', year: '2026-2027' },
       { id: 2, src: '/banio/Beberly/IMG_8449.jpg', name: 'Beberlyn Mishell Avila Villagran', role: 'Señorita Flor de la Feria', year: '2026-2027' },
@@ -53,7 +53,7 @@ const galleryData: Category[] = [
   },
   {
     title: "Traje Blanco",
-    description: "Pureza y glamour en una noche inolvidable.",
+    description: "Pureza y glamour de Nuestras Representantes.",
     photos: [
       { id: 28, src: '/blanco/Beberly/008.jpg', name: 'Beberlyn Mishell Avila Villagran', role: 'Señorita Flor de la Feria', year: '2026-2027' },
       { id: 29, src: '/blanco/Roci/_MG_0433.jpg', name: 'Estefany Rocio Ventura Morales', role: 'Señorita Simpatía', year: '2026-2027' },
@@ -74,7 +74,7 @@ const galleryData: Category[] = [
   },
   {
     title: "Estilo Vaquero",
-    description: "Tradición y alegría en nuestro desfile hípico.",
+    description: "Nuestras Representantes en traje vaquero.",
     photos: [
       { id: 43, src: '/vaquero/Beberly/014.jpg', name: 'Beberlyn Mishell Avila Villagran', role: 'Señorita Flor de la Feria', year: '2026-2027' },
       { id: 44, src: '/vaquero/Beberly/IMG_9537.jpg', name: 'Beberlyn Mishell Avila Villagran', role: 'Señorita Flor de la Feria', year: '2026-2027' },
