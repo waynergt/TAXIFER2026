@@ -546,8 +546,50 @@ const galleryData: Category[] = [
         year: '2026-2027' 
       },
       { 
-        id: 150,
-        src: '/coronacion4/IMG_9028.jpg', 
+        id: 151,
+        src: '/coronacion5/IMG_9030.jpg', 
+        name: 'Coronación de Nuestras Bellezas Taxistecas', 
+        year: '2026-2027' 
+      },
+      { 
+        id: 152,
+        src: '/coronacion5/IMG_9031.jpg', 
+        name: 'Coronación de Nuestras Bellezas Taxistecas', 
+        year: '2026-2027' 
+      },
+      { 
+        id: 153,
+        src: '/coronacion5/IMG_9032.jpg', 
+        name: 'Coronación de Nuestras Bellezas Taxistecas', 
+        year: '2026-2027' 
+      },
+      { 
+        id: 154,
+        src: '/coronacion5/IMG_9033.jpg', 
+        name: 'Coronación de Nuestras Bellezas Taxistecas', 
+        year: '2026-2027' 
+      },
+      { 
+        id: 155,
+        src: '/coronacion5/IMG_9034.jpg', 
+        name: 'Coronación de Nuestras Bellezas Taxistecas', 
+        year: '2026-2027' 
+      },
+      { 
+        id: 156,
+        src: '/coronacion5/IMG_9038.jpg', 
+        name: 'Coronación de Nuestras Bellezas Taxistecas', 
+        year: '2026-2027' 
+      },
+      { 
+        id: 157,
+        src: '/coronacion5/IMG_9041.jpg', 
+        name: 'Coronación de Nuestras Bellezas Taxistecas', 
+        year: '2026-2027' 
+      },
+      { 
+        id: 158,
+        src: '/coronacion5/IMG_9043.jpg', 
         name: 'Coronación de Nuestras Bellezas Taxistecas', 
         year: '2026-2027' 
       },
