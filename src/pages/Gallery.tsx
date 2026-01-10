@@ -237,6 +237,120 @@ const galleryData: Category[] = [
         name: 'Coronación de Nuestras Bellezas Taxistecas', 
         year: '2026-2027' 
       },
+      { 
+        id: 97,
+        src: '/coronacion/IMG_8864.jpg', 
+        name: 'Coronación de Nuestras Bellezas Taxistecas', 
+        year: '2026-2027' 
+      },
+      { 
+        id: 98,
+        src: '/coronacion/8866.jpg', 
+        name: 'Coronación de Nuestras Bellezas Taxistecas', 
+        year: '2026-2027' 
+      },
+      { 
+        id: 99,
+        src: '/coronacion/8869.jpg', 
+        name: 'Coronación de Nuestras Bellezas Taxistecas', 
+        year: '2026-2027' 
+      },
+      { 
+        id: 100,
+        src: '/coronacion/8869.jpg', 
+        name: 'Coronación de Nuestras Bellezas Taxistecas', 
+        year: '2026-2027' 
+      },
+      { 
+        id: 101,
+        src: '/coronacion/8870.jpg', 
+        name: 'Coronación de Nuestras Bellezas Taxistecas', 
+        year: '2026-2027' 
+      },
+      { 
+        id: 102,
+        src: '/coronacion/8873.jpg', 
+        name: 'Coronación de Nuestras Bellezas Taxistecas', 
+        year: '2026-2027' 
+      },
+      { 
+        id: 103,
+        src: '/coronacion/8875.jpg', 
+        name: 'Coronación de Nuestras Bellezas Taxistecas', 
+        year: '2026-2027' 
+      },
+      { 
+        id: 104,
+        src: '/coronacion/8879.jpg', 
+        name: 'Coronación de Nuestras Bellezas Taxistecas', 
+        year: '2026-2027' 
+      },
+      { 
+        id: 105,
+        src: '/coronacion/8883.jpg', 
+        name: 'Coronación de Nuestras Bellezas Taxistecas', 
+        year: '2026-2027' 
+      },
+      { 
+        id: 106,
+        src: '/coronacion/8884.jpg', 
+        name: 'Coronación de Nuestras Bellezas Taxistecas', 
+        year: '2026-2027' 
+      },
+      { 
+        id: 107,
+        src: '/coronacion/8885.jpg', 
+        name: 'Coronación de Nuestras Bellezas Taxistecas', 
+        year: '2026-2027' 
+      },
+      { 
+        id: 108,
+        src: '/coronacion/8886.jpg', 
+        name: 'Coronación de Nuestras Bellezas Taxistecas', 
+        year: '2026-2027' 
+      },
+      { 
+        id: 109,
+        src: '/coronacion/8893.jpg', 
+        name: 'Coronación de Nuestras Bellezas Taxistecas', 
+        year: '2026-2027' 
+      },
+      { 
+        id: 110,
+        src: '/coronacion/8894.jpg', 
+        name: 'Coronación de Nuestras Bellezas Taxistecas', 
+        year: '2026-2027' 
+      },
+      { 
+        id: 111,
+        src: '/coronacion/8895.jpg', 
+        name: 'Coronación de Nuestras Bellezas Taxistecas', 
+        year: '2026-2027' 
+      },
+      { 
+        id: 112,
+        src: '/coronacion/8897.jpg', 
+        name: 'Coronación de Nuestras Bellezas Taxistecas', 
+        year: '2026-2027' 
+      },
+      { 
+        id: 113,
+        src: '/coronacion/8900.jpg', 
+        name: 'Coronación de Nuestras Bellezas Taxistecas', 
+        year: '2026-2027' 
+      },
+      { 
+        id: 114,
+        src: '/coronacion/8901.jpg', 
+        name: 'Coronación de Nuestras Bellezas Taxistecas', 
+        year: '2026-2027' 
+      },
+      { 
+        id: 115,
+        src: '/coronacion/8908.jpg', 
+        name: 'Coronación de Nuestras Bellezas Taxistecas', 
+        year: '2026-2027' 
+      },
     ]
   },
 ];
