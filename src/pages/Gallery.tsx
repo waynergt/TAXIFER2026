@@ -179,7 +179,7 @@ const galleryData: Category[] = [
       },
       { 
         id: 87, // Usamos un ID nuevo
-        src: '/coronacion/IMG_47.jpg', 
+        src: '/coronacion/IMG_8847.jpg', 
         name: 'Coronación de Nuestras Bellezas Taxistecas', 
         year: '2026-2027' 
       },
