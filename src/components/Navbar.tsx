@@ -11,6 +11,7 @@ export default function Navbar() {
     { name: 'Inicio', path: '/' },
     { name: 'Programa', path: '/programa' },
     { name: 'Galería', path: '/galeria' },
+    { name: 'Videos', path: '/videos' },
     { name: 'Revista', path: '/revista' }, // <--- ¡Aquí está integrado!
   ];
 

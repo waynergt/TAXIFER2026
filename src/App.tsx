@@ -3,13 +3,13 @@ import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import Program from './pages/Program';
 import Gallery from './pages/Gallery';
+import Magazine from './pages/Magazine';
+// 1. IMPORTANTE: IMPORTAR LA PÁGINA DE VIDEOS
+import Videos from './pages/Videos'; 
+
 import Footer from './components/Footer'; 
 import ScrollToTop from './components/ScrollToTop';
 import BackToTopBtn from './components/BackToTopBtn';
-import Magazine from './pages/Magazine';
-
-// NOTA: Borramos la importación de VisitCounter de aquí porque ya lo estás usando en Home.tsx
-// y así evitamos el error de "definido pero nunca usado".
 
 function App() {
   return (
@@ -22,6 +22,8 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/programa" element={<Program />} />
           <Route path="/galeria" element={<Gallery />} />
+          {/* 2. IMPORTANTE: LA RUTA DE VIDEOS */}
+          <Route path="/videos" element={<Videos />} />
           <Route path="/revista" element={<Magazine />} />
         </Routes>
       </main>

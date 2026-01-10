@@ -6,7 +6,7 @@ interface Photo {
   id: number;
   src: string;
   name: string;
-  role: string;
+  role?: string; // <--- EL SIGNO DE INTERROGACIÓN (?) LO HACE OPCIONAL
   year: string;
 }
 
@@ -120,18 +120,123 @@ const galleryData: Category[] = [
       { id: 76, src: '/vaquero/Britney/IMG_9724.jpg', name: 'Britney Sheyen Pérez López', role: 'Señorita Taxistecos Ausentes', year: '2026-2027' },
       { id: 77, src: '/vaquero/Britney/IMG_9737.jpg', name: 'Britney Sheyen Pérez López', role: 'Señorita Taxistecos Ausentes', year: '2026-2027' },
       { id: 78, src: '/vaquero/Britney/IMG_9922.jpg', name: 'Britney Sheyen Pérez López', role: 'Señorita Taxistecos Ausentes', year: '2026-2027' },
-      
     ]
   },
-  // --- NUEVA CATEGORÍA AGREGADA ---
+  // --- NUEVA CATEGORÍA (Sin 'role') ---
   {
     id: 'coronacion',
     title: "Velada de Coronación",
     description: "La noche mágica donde brilló la belleza y elegancia.",
-    coverImage: '/coronacion/portada.jpg', // ¡Asegúrate de tener esta imagen o cámbiala por una real!
+    coverImage: '/coronacion/portada.jpg',
     photos: [
-      // Agrega aquí tus fotos de coronación siguiendo el mismo formato
-      // { id: 100, src: '/coronacion/foto1.jpg', name: 'Candidata', role: 'Participante', year: '2026' },
+      { 
+        id: 79, // Usamos un ID nuevo
+        src: '/coronacion/IMG_8823.jpg', 
+        name: 'Coronación de Nuestras Bellezas Taxistecas', 
+        year: '2026-2027' 
+      },
+      { 
+        id: 80, // Usamos un ID nuevo
+        src: '/coronacion/IMG_8825.jpg', 
+        name: 'Coronación de Nuestras Bellezas Taxistecas', 
+        year: '2026-2027' 
+      },
+      { 
+        id: 81, // Usamos un ID nuevo
+        src: '/coronacion/IMG_8834.jpg', 
+        name: 'Coronación de Nuestras Bellezas Taxistecas', 
+        year: '2026-2027' 
+      },
+      { 
+        id: 82, // Usamos un ID nuevo
+        src: '/coronacion/IMG_8837.jpg', 
+        name: 'Coronación de Nuestras Bellezas Taxistecas', 
+        year: '2026-2027' 
+      },
+      { 
+        id: 83, // Usamos un ID nuevo
+        src: '/coronacion/IMG_8840.jpg', 
+        name: 'Coronación de Nuestras Bellezas Taxistecas', 
+        year: '2026-2027' 
+      },
+      { 
+        id: 84, // Usamos un ID nuevo
+        src: '/coronacion/IMG_8842.jpg', 
+        name: 'Coronación de Nuestras Bellezas Taxistecas', 
+        year: '2026-2027' 
+      },
+      { 
+        id: 85, // Usamos un ID nuevo
+        src: '/coronacion/IMG_8844.jpg', 
+        name: 'Coronación de Nuestras Bellezas Taxistecas', 
+        year: '2026-2027' 
+      },
+      { 
+        id: 86, // Usamos un ID nuevo
+        src: '/coronacion/IMG_8845.jpg', 
+        name: 'Coronación de Nuestras Bellezas Taxistecas', 
+        year: '2026-2027' 
+      },
+      { 
+        id: 87, // Usamos un ID nuevo
+        src: '/coronacion/IMG_47.jpg', 
+        name: 'Coronación de Nuestras Bellezas Taxistecas', 
+        year: '2026-2027' 
+      },
+      { 
+        id: 88, // Usamos un ID nuevo
+        src: '/coronacion/IMG_8849.jpg', 
+        name: 'Coronación de Nuestras Bellezas Taxistecas', 
+        year: '2026-2027' 
+      },
+      { 
+        id: 89, // Usamos un ID nuevo
+        src: '/coronacion/IMG_8852.jpg', 
+        name: 'Coronación de Nuestras Bellezas Taxistecas', 
+        year: '2026-2027' 
+      },
+      { 
+        id: 90, // Usamos un ID nuevo
+        src: '/coronacion/IMG_8854.jpg', 
+        name: 'Coronación de Nuestras Bellezas Taxistecas', 
+        year: '2026-2027' 
+      },
+      { 
+        id: 91, // Usamos un ID nuevo
+        src: '/coronacion/IMG_8855.jpg', 
+        name: 'Coronación de Nuestras Bellezas Taxistecas', 
+        year: '2026-2027' 
+      },
+      { 
+        id: 92, // Usamos un ID nuevo
+        src: '/coronacion/IMG_8856.jpg', 
+        name: 'Coronación de Nuestras Bellezas Taxistecas', 
+        year: '2026-2027' 
+      },
+      { 
+        id: 93, // Usamos un ID nuevo
+        src: '/coronacion/IMG_8858.jpg', 
+        name: 'Coronación de Nuestras Bellezas Taxistecas', 
+        year: '2026-2027' 
+      },
+      { 
+        id: 94, // Usamos un ID nuevo
+        src: '/coronacion/IMG_8860.jpg', 
+        name: 'Coronación de Nuestras Bellezas Taxistecas', 
+        year: '2026-2027' 
+      },
+      { 
+        id: 95, // Usamos un ID nuevo
+        src: '/coronacion/IMG_8862.jpg', 
+        name: 'Coronación de Nuestras Bellezas Taxistecas', 
+        year: '2026-2027' 
+      },
+      { 
+        id: 96, // Usamos un ID nuevo
+        src: '/coronacion/portada.jpg', 
+        name: 'Coronación de Nuestras Bellezas Taxistecas', 
+        year: '2026-2027' 
+      },
     ]
   },
 ];
@@ -142,7 +247,6 @@ const GalleryItem = ({ image, onClick, photoIdx }: { image: Photo, onClick: (p:n
 
   return (
     <div 
-      // CORRECCIÓN AQUÍ: Cambiamos [3/4] por 3/4
       className="break-inside-avoid relative group rounded-2xl overflow-hidden cursor-pointer shadow-md hover:shadow-xl transition-all duration-500 bg-slate-200 aspect-3/4"
       onClick={() => onClick(photoIdx)}
     >
@@ -318,10 +422,13 @@ export default function Gallery() {
                  <span className="truncate">{currentPhoto.name}</span>
                </h3>
                <div className="flex items-center justify-center md:justify-start gap-4 mt-1 text-xs md:text-sm text-gray-600">
-                 <span className="flex items-center gap-1 bg-slate-100 px-2 py-0.5 rounded-full">
-                   <Award size={14} className="text-orange-500" />
-                   {currentPhoto.role}
-                 </span>
+                 {/* LÓGICA CONDICIONAL: Solo muestra el rol si existe */}
+                 {currentPhoto.role && (
+                   <span className="flex items-center gap-1 bg-slate-100 px-2 py-0.5 rounded-full">
+                     <Award size={14} className="text-orange-500" />
+                     {currentPhoto.role}
+                   </span>
+                 )}
                  <span className="flex items-center gap-1 font-semibold">
                    <Calendar size={14} className="text-gray-400" />
                    {currentPhoto.year}
